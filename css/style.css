@@ -1,1 +1,22 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, body ul, body ul li, body ul li .name-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  flex-direction: column;
+}
+
+body ul {
+  flex-direction: column;
+}
+/*# sourceMappingURL=style.css.map */
