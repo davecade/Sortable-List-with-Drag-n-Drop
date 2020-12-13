@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-body, body ul, body ul li, body ul li .name-container {
+body, body .my-list, body .my-list li, body .my-list li .name-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +26,28 @@ body > p {
   margin: 2rem 0 3rem 0;
 }
 
-body ul {
+body .my-list {
   flex-direction: column;
+}
+
+body .my-list li .rank {
+  padding: 1rem;
+  background: gray;
+  font-size: 1.5rem;
+}
+
+body .my-list li .name-container {
+  justify-content: space-between;
+  padding: 1rem;
+  width: 350px;
+  background: #fff;
+  color: black;
+  border: 1px solid gray;
+  font-size: 1.5rem;
+}
+
+body button {
+  margin: 1rem 0;
+  padding: .5rem 1rem;
 }
 /*# sourceMappingURL=style.css.map */
