@@ -20,20 +20,31 @@ const App = (() => {
         render();
         listeners();
     }
-
-    const listeners = () => {
-
+    
+    const dragStart = () => {
+        console.log("HELLO!")
     }
 
+    const listeners = () => {
+        const draggableEl = document.querySelectorAll(".draggable");
+        const draggableListEl = document.querySelectorAll(".my-list li")
+
+        draggableEl.forEach(draggable => {
+            console.log("HELLO")
+        })
+    }
+
+    
+
     const render = () => {
-        let markup
+        let markup = ''
 
         gameList.forEach( (game, index) => {
 
             markup += `
                 <li>
                     <span class="rank">${index+1}</span>
-                    <div class="name-container">
+                    <div class="name-container draggable" draggable="true">
                         <p class="name">${game}</p>
                         <i class="fas fa-grip-lines"></i>
                     </div>
@@ -42,7 +53,7 @@ const App = (() => {
 
         })
         
-        listEl.innerHTML = markup
+        listEl.innerHTML = markup;
     }
 
     return {
