@@ -11,6 +11,10 @@ body, body .my-list, body .my-list li, body .my-list li .rank, body .my-list li 
   align-items: center;
 }
 
+.my-list li.over .draggable {
+  background-color: #eaeaea;
+}
+
 body {
   font-family: Roboto, sans-serif;
   flex-direction: column;

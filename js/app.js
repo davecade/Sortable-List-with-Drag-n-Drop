@@ -16,21 +16,61 @@ const App = (() => {
         'Tekken 3'
     ]
 
+    let dragStartIndex
+
     const init = () => {
         render();
         listeners();
     }
     
-    const dragStart = () => {
-        console.log("HELLO!")
+    function dragStart(){
+        dragStartIndex = +this.closest('li').getAttribute('data-index')
+        console.log(dragStartIndex)
     }
+
+    function dragEnter() {
+        this.classList.add('over')
+    }
+    
+    function dragLeave() {
+        this.classList.remove('over')
+    }
+
+    function swapItems(fromIndex, toIndex) {
+        let itemOne = gameList[fromIndex]
+        let itemTwo = gameList[toIndex]
+        gameList[fromIndex] = itemTwo
+        gameList[toIndex] = itemOne
+    }
+
+    function dragOver(e) {
+        e.preventDefault();
+    }
+    
+
+    function dragDrop(e){
+        e.preventDefault();
+        const dragEndIndex = this.getAttribute('data-index')
+        console.log(dragEndIndex)
+        swapItems(dragStartIndex, dragEndIndex)
+        this.classList.remove('over')
+        init();
+    }
+
 
     const listeners = () => {
         const draggableEl = document.querySelectorAll(".draggable");
         const draggableListEl = document.querySelectorAll(".my-list li")
 
         draggableEl.forEach(draggable => {
-            console.log("HELLO")
+            draggable.addEventListener('dragstart', dragStart)
+        })
+
+        draggableListEl.forEach( item => {
+            item.addEventListener('dragover', dragOver)
+            item.addEventListener('drop', dragDrop)
+            item.addEventListener('dragenter', dragEnter)
+            item.addEventListener('dragleave', dragLeave)
         })
     }
 
@@ -39,10 +79,11 @@ const App = (() => {
     const render = () => {
         let markup = ''
 
-        gameList.forEach( (game, index) => {
+        console.log(gameList)
 
+        gameList.forEach( (game, index) => {
             markup += `
-                <li>
+                <li data-index="${index}">
                     <span class="rank">${index+1}</span>
                     <div class="name-container draggable" draggable="true">
                         <p class="name">${game}</p>
@@ -50,7 +91,6 @@ const App = (() => {
                     </div>
                 </li>
             `
-
         })
         
         listEl.innerHTML = markup;

@@ -12,6 +12,11 @@
     align-items: center;
 }
 
+.my-list li.over .draggable {
+    background-color: #eaeaea;
+}
+
+
 body {
     font-family: Roboto, sans-serif;
     @extend %flex;
@@ -53,8 +58,8 @@ body {
                 border: 1px solid gray;
                 font-size: 1.5rem;
             }
-
         }
+
     }
 
     button {
