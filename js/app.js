@@ -3,7 +3,7 @@ const App = (() => {
     // -- Cache the DOM
     const listEl = document.querySelector(".my-list")
 
-    const gameList = [
+    const correctGameList = [
         'World Of Warcraft',
         'Overwatch',
         'Final Fantasy 8',
@@ -16,6 +16,10 @@ const App = (() => {
         'Tekken 3'
     ]
 
+    let gameList = correctGameList.map(game => {
+        return game
+    })
+
     let dragStartIndex
 
     const init = () => {
@@ -24,8 +28,7 @@ const App = (() => {
     }
     
     function dragStart(){
-        dragStartIndex = +this.closest('li').getAttribute('data-index')
-        console.log(dragStartIndex)
+        dragStartIndex = this.closest('li').getAttribute('data-index')
     }
 
     function dragEnter() {
@@ -74,19 +77,23 @@ const App = (() => {
         })
     }
 
-    
+    const checkOrder = (index) => {
+        if(gameList[index] === correctGameList[index]) {
+            return 'right'
+        } else {
+            return 'wrong'
+        }
+    }
 
     const render = () => {
         let markup = ''
-
-        console.log(gameList)
 
         gameList.forEach( (game, index) => {
             markup += `
                 <li data-index="${index}">
                     <span class="rank">${index+1}</span>
                     <div class="name-container draggable" draggable="true">
-                        <p class="name">${game}</p>
+                        <p class="name ${checkOrder(index)}">${game}</p>
                         <i class="fas fa-grip-lines"></i>
                     </div>
                 </li>

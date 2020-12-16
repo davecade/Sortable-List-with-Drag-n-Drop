@@ -16,6 +16,14 @@
     background-color: #eaeaea;
 }
 
+.right {
+    color: #1eb41e;
+}
+
+.wrong {
+    color: red;
+}
+
 
 body {
     font-family: Roboto, sans-serif;
@@ -57,6 +65,7 @@ body {
                 color: black;
                 border: 1px solid gray;
                 font-size: 1.5rem;
+
             }
         }
 

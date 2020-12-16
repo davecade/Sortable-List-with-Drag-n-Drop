@@ -15,6 +15,14 @@ body, body .my-list, body .my-list li, body .my-list li .rank, body .my-list li 
   background-color: #eaeaea;
 }
 
+.right {
+  color: #1eb41e;
+}
+
+.wrong {
+  color: red;
+}
+
 body {
   font-family: Roboto, sans-serif;
   flex-direction: column;
