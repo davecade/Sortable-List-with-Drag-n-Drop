@@ -2,23 +2,28 @@ const App = (() => {
 
     // -- Cache the DOM
     const listEl = document.querySelector(".my-list")
+    const rankEl = document.querySelectorAll(".rank")
+    const gameEl = document.querySelectorAll(".name-container")
+
 
     const correctGameList = [
         'World Of Warcraft',
-        'Overwatch',
         'Final Fantasy 8',
-        'Dota',
         'Crash Bandicoot',
         'Guild Wars 2',
+        'Blade & Soul',
+        'Tekken 3',
+        'Overwatch',
         'Shadow of Mordor',
         'Heros of the Storm',
-        'Blade & Soul',
-        'Tekken 3'
+        'Dota'
     ]
 
-    let gameList = correctGameList.map(game => {
+    let gameListCopy = correctGameList.map(game => {
         return game
     })
+
+    let gameList = shuffle(gameListCopy)
 
     let dragStartIndex
 
@@ -54,12 +59,22 @@ const App = (() => {
     function dragDrop(e){
         e.preventDefault();
         const dragEndIndex = this.getAttribute('data-index')
-        console.log(dragEndIndex)
         swapItems(dragStartIndex, dragEndIndex)
         this.classList.remove('over')
         init();
     }
 
+    // -- Taken from: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+    function shuffle(a){
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
+    }
 
     const listeners = () => {
         const draggableEl = document.querySelectorAll(".draggable");
@@ -78,11 +93,24 @@ const App = (() => {
     }
 
     const checkOrder = (index) => {
+
         if(gameList[index] === correctGameList[index]) {
             return 'right'
         } else {
             return 'wrong'
         }
+
+    }
+
+    const isCorrect = () => {
+        for(let i = 0; i < gameList.length; i++) {
+            if(gameList[i] !== correctGameList[i]) {
+                console.log(gameList[i], correctGameList[i])
+                return false
+            }
+        }
+
+        return true
     }
 
     const render = () => {
@@ -101,6 +129,11 @@ const App = (() => {
         })
         
         listEl.innerHTML = markup;
+        
+        if(isCorrect()) {
+            rankEl.style = "border: 1px solid #ffc400"
+            gameEl.style = "border: 1px solid #ffc400"
+        }
     }
 
     return {
