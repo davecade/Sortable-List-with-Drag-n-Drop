@@ -2,8 +2,6 @@ const App = (() => {
 
     // -- Cache the DOM
     const listEl = document.querySelector(".my-list")
-    const rankEl = document.querySelectorAll(".rank")
-    const gameEl = document.querySelectorAll(".name-container")
 
 
     const correctGameList = [
@@ -105,7 +103,6 @@ const App = (() => {
     const isCorrect = () => {
         for(let i = 0; i < gameList.length; i++) {
             if(gameList[i] !== correctGameList[i]) {
-                console.log(gameList[i], correctGameList[i])
                 return false
             }
         }
@@ -122,18 +119,24 @@ const App = (() => {
                     <span class="rank">${index+1}</span>
                     <div class="name-container draggable" draggable="true">
                         <p class="name ${checkOrder(index)}">${game}</p>
-                        <i class="fas fa-grip-lines"></i>
                     </div>
                 </li>
             `
         })
+
         
         listEl.innerHTML = markup;
-        
+
         if(isCorrect()) {
-            rankEl.style = "border: 1px solid #ffc400"
-            gameEl.style = "border: 1px solid #ffc400"
+            const rankEl = document.querySelectorAll(".rank")
+            const gameEl = document.querySelectorAll(".name-container")
+
+            for(let i=0; i< gameList.length; i++ ) {
+                rankEl[i].style = "border: 1px solid #ffc400"
+                gameEl[i].style = "border: 1px solid #ffc400"
+            }
         }
+        
     }
 
     return {

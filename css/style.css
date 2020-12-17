@@ -23,6 +23,10 @@ body, body .my-list, body .my-list li, body .my-list li .rank, body .my-list li 
   color: #eb1616;
 }
 
+.orange-border {
+  border: 1px solid #ffc400;
+}
+
 body {
   font-family: Roboto, sans-serif;
   flex-direction: column;
@@ -63,5 +67,9 @@ body .my-list li .name-container {
   border: 1px solid #fff;
   font-size: 1.5rem;
   cursor: grab;
+}
+
+body .my-list li .name-container:active {
+  cursor: grabbing;
 }
 /*# sourceMappingURL=style.css.map */

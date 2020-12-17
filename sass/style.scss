@@ -24,6 +24,10 @@
     color: #eb1616;
 }
 
+.orange-border {
+    border: 1px solid #ffc400
+}
+
 
 body {
     font-family: Roboto, sans-serif;
@@ -71,6 +75,10 @@ body {
                 border: 1px solid #fff;
                 font-size: 1.5rem;
                 cursor: grab;
+
+                &:active {
+                    cursor: grabbing;
+                }
             }
         }
 
