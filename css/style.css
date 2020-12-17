@@ -67,9 +67,29 @@ body .my-list li .name-container {
   border: 1px solid #fff;
   font-size: 1.5rem;
   cursor: grab;
+  transition: .1s ease;
 }
 
 body .my-list li .name-container:active {
   cursor: grabbing;
+}
+
+body .reset {
+  margin-top: 3rem;
+  padding: .5rem 1.5rem;
+  cursor: pointer;
+  background: green;
+  color: #fff;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  outline: none;
+}
+
+body .reset:hover {
+  opacity: 0.9;
+}
+
+body .reset:active {
+  transform: scale(0.98);
 }
 /*# sourceMappingURL=style.css.map */

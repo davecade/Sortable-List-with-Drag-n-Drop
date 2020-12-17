@@ -2,6 +2,7 @@ const App = (() => {
 
     // -- Cache the DOM
     const listEl = document.querySelector(".my-list")
+    const shuffleButton = document.querySelector(".reset")
 
 
     const correctGameList = [
@@ -87,6 +88,11 @@ const App = (() => {
             item.addEventListener('drop', dragDrop)
             item.addEventListener('dragenter', dragEnter)
             item.addEventListener('dragleave', dragLeave)
+        })
+
+        shuffleButton.addEventListener('click', () => {
+            gameList = shuffle(gameListCopy)
+            init();
         })
     }
 
