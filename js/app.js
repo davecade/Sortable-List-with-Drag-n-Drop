@@ -30,15 +30,15 @@ const App = (() => {
         render();
         listeners();
     }
-    
-    function dragStart(){
+
+    function dragStart() {
         dragStartIndex = this.closest('li').getAttribute('data-index')
     }
 
     function dragEnter() {
         this.classList.add('over')
     }
-    
+
     function dragLeave() {
         this.classList.remove('over')
     }
@@ -53,9 +53,9 @@ const App = (() => {
     function dragOver(e) {
         e.preventDefault();
     }
-    
 
-    function dragDrop(e){
+
+    function dragDrop(e) {
         e.preventDefault();
         const dragEndIndex = this.getAttribute('data-index')
         swapItems(dragStartIndex, dragEndIndex)
@@ -64,7 +64,7 @@ const App = (() => {
     }
 
     // -- Taken from: https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-    function shuffle(a){
+    function shuffle(a) {
         var j, x, i;
         for (i = a.length - 1; i > 0; i--) {
             j = Math.floor(Math.random() * (i + 1));
@@ -83,7 +83,7 @@ const App = (() => {
             draggable.addEventListener('dragstart', dragStart)
         })
 
-        draggableListEl.forEach( item => {
+        draggableListEl.forEach(item => {
             item.addEventListener('dragover', dragOver)
             item.addEventListener('drop', dragDrop)
             item.addEventListener('dragenter', dragEnter)
@@ -98,7 +98,7 @@ const App = (() => {
 
     const checkOrder = (index) => {
 
-        if(gameList[index] === correctGameList[index]) {
+        if (gameList[index] === correctGameList[index]) {
             return 'right'
         } else {
             return 'wrong'
@@ -107,8 +107,8 @@ const App = (() => {
     }
 
     const isCorrect = () => {
-        for(let i = 0; i < gameList.length; i++) {
-            if(gameList[i] !== correctGameList[i]) {
+        for (let i = 0; i < gameList.length; i++) {
+            if (gameList[i] !== correctGameList[i]) {
                 return false
             }
         }
@@ -119,7 +119,7 @@ const App = (() => {
     const render = () => {
         let markup = ''
 
-        gameList.forEach( (game, index) => {
+        gameList.forEach((game, index) => {
             markup += `
                 <li data-index="${index}">
                     <span class="rank">${index+1}</span>
@@ -130,19 +130,19 @@ const App = (() => {
             `
         })
 
-        
+
         listEl.innerHTML = markup;
 
-        if(isCorrect()) {
+        if (isCorrect()) {
             const rankEl = document.querySelectorAll(".rank")
             const gameEl = document.querySelectorAll(".name-container")
 
-            for(let i=0; i< gameList.length; i++ ) {
+            for (let i = 0; i < gameList.length; i++) {
                 rankEl[i].style = "border: 1px solid #ffc400"
                 gameEl[i].style = "border: 1px solid #ffc400"
             }
         }
-        
+
     }
 
     return {
@@ -152,5 +152,3 @@ const App = (() => {
 })()
 
 App.init();
-
-
